@@ -1,0 +1,16 @@
+package biblio.document;
+
+import biblio.Abonne.Abonne;
+import biblio.document.exception.EmpruntException;
+import biblio.document.exception.ReservationException;
+import biblio.document.exception.RetourException;
+
+public interface Document {
+    String idDoc();
+    // exception si déjà réservé ou emprunté
+    void reservation (Abonne ab) throws ReservationException;
+    // exception si réservé pour une autre abonné ou déjà emprunté
+    void emprunt(Abonne ab) throws EmpruntException;
+    // sert au retour d’un biblio.document ou à l’annulation d‘une réservation
+    void retour() throws RetourException;
+}
