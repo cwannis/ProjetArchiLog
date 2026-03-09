@@ -4,27 +4,39 @@ import biblio.Abonne.Abonne;
 import biblio.document.Document;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Bibliotheque {
 
-    private ArrayList<Document> documents;
-    private ArrayList<Abonne> abonnes;
+    private HashMap<String, Document> documents;
+    private HashMap<String, Abonne> abonnes;
 
     public Bibliotheque() {
-        ArrayList<Document> doc = new ArrayList<>();
-        ArrayList<Abonne> ab = new ArrayList<>();
+        HashMap<String, Document> doc = new HashMap<>();
+        HashMap<String, Abonne> ab = new HashMap<>();
     }
-    public Bibliotheque(ArrayList<Document> documents, ArrayList<Abonne> ab) {
+
+    public Bibliotheque(ArrayList<Document> docs, ArrayList<Abonne> ab) {
         this();
-        this.documents = documents;
-        this.abonnes = ab;
+        for(Document d : docs) addDocument(d);
+        for(Abonne a : ab) addAbonne(a);
     }
 
     public void addDocument(Document document) {
-        documents.add(document);
+        documents.put(document.idDoc(), document);
     }
 
     public void addAbonne(Abonne ab) {
-        abonnes.add(ab);
+        abonnes.put(ab.getId(), ab);
     }
+
+    public synchronized String empreinterDocuments(String idDocument, String idAbonne) {
+        try {
+            documents.get(idDocument).emprunt(abonnes.get(idAbonne));
+            return "document emprunter avec sucee";
+        }catch(Exception e) {
+            return e.getMessage();
+        }
+    }
+
 }
