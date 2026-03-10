@@ -22,14 +22,14 @@ public class Serveur implements Runnable {
 	public void run() {
 		try {
 			while(true) {
-				System.out.println("J'attends un ServeurBTTP.client...");
+				System.out.println("J'attends un client...");
 				Socket client_socket = listen_socket.accept(); // Appel bloquant !
-				System.out.println("Ca y est ! J'ai un ServeurBTTP.client.");
+				System.out.println("J'ai un client.");
 				
-				System.out.print("Adresse IP locale : "+client_socket.getLocalAddress());
-				System.out.println(" Port local : "+client_socket.getLocalPort());
-				System.out.print("Adresse IP distante (ServeurBTTP.client) : "+client_socket.getInetAddress());
-				System.out.println(" Port distant : "+client_socket.getPort());
+				System.out.print("Adresse IP locale : "+ client_socket.getLocalAddress());
+				System.out.println(" Port local : "+ client_socket.getLocalPort());
+				System.out.print("Adresse IP distante  : "+client_socket.getInetAddress());
+				System.out.println(" Port distant : "+ client_socket.getPort());
 				new Thread(service_class.getConstructor(Socket.class).newInstance(client_socket)).start();
 			}
 		}
