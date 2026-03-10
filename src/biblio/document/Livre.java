@@ -2,17 +2,19 @@ package biblio.document;
 
 
 import biblio.Abonne.Abonne;
+import biblio.document.DocumentsState.DocumentLibre;
 import biblio.document.exception.EmpruntException;
 import biblio.document.exception.ReservationException;
 import biblio.document.exception.RetourException;
 
-public class Livre implements Document {
+public class Livre extends Document{
 
     private String id;
     private String titre;
     private int nbPages;
 
     public Livre(String id, String titre, int nbPages) {
+        super();
         this.id = id;
         this.titre = titre;
         this.nbPages = nbPages;
@@ -25,16 +27,16 @@ public class Livre implements Document {
 
     @Override
     public void reservation(Abonne ab) throws ReservationException {
-
+        super.reservation(ab);
     }
 
     @Override
     public void emprunt(Abonne ab) throws EmpruntException {
-
+        super.emprunt(ab);
     }
 
     @Override
     public void retour() throws RetourException {
-
+        super.retour();
     }
 }

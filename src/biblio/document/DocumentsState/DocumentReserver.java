@@ -1,0 +1,12 @@
+package biblio.document.DocumentsState;
+
+import biblio.document.DocumentState;
+import biblio.document.exception.RetourException;
+
+public class DocumentReserver extends DocumentState {
+
+    public DocumentState retour() throws RetourException {
+        return new DocumentLibre();
+    }
+
+}
