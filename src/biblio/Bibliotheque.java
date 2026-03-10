@@ -15,8 +15,8 @@ public class Bibliotheque {
     private HashMap<String, Abonne> abonnes;
 
     public Bibliotheque() {
-        HashMap<String, IDocument> doc = new HashMap<>();
-        HashMap<String, Abonne> ab = new HashMap<>();
+        documents = new HashMap<>();
+        abonnes = new HashMap<>();
     }
 
     public Bibliotheque(ArrayList<IDocument> docs, ArrayList<Abonne> ab) {

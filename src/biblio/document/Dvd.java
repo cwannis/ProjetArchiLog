@@ -41,6 +41,6 @@ public class Dvd extends Document{
 
     private boolean ageIsGood(Abonne ab)
     {
-        return p16 && ab.getAge() >= 16;
+        return !p16 || ab.getAge() >= 16;
     }
 }
