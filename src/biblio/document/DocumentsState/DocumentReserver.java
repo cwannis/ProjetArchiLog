@@ -3,6 +3,7 @@ package biblio.document.DocumentsState;
 import biblio.Abonne.Abonne;
 import biblio.document.DocumentState;
 import biblio.document.exception.EmpruntException;
+import biblio.document.exception.ReservationException;
 import biblio.document.exception.RetourException;
 
 public class DocumentReserver extends DocumentState {
@@ -23,6 +24,10 @@ public class DocumentReserver extends DocumentState {
     public DocumentState emprunt(Abonne ab) throws EmpruntException {
         if(abboReserve.getId().equals(ab.getId())) return new DocumentEmprunter();
         throw new EmpruntException("ce document est deja reserver par un autre abbonne");
+    }
+
+    public DocumentState reservation(Abonne ab) throws ReservationException {
+        throw new ReservationException("ce document ne peut pas etre reserver car un autre abonne la deja reserver");
     }
 
 
