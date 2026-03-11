@@ -6,6 +6,11 @@ import java.io.IOException;
 
 public class LecteurMusic implements Runnable {
 
+    private long time;
+    public LecteurMusic(long time) {
+        this.time = time;
+    }
+
     private void lancerIndien() {
         String cheminVersMusic = "src/music/musicAttente.wav";
 
@@ -17,8 +22,9 @@ public class LecteurMusic implements Runnable {
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            long dureeEnMillisecondes = clip.getMicrosecondLength() / 1000;
+            long dureeEnMillisecondes = time;
             Thread.sleep(dureeEnMillisecondes);
+            clip.stop();
 
         } catch (UnsupportedAudioFileException e) {
             throw new RuntimeException(e);
