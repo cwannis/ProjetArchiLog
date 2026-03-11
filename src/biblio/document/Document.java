@@ -24,9 +24,7 @@ public abstract class Document implements IDocument{
     private Timer timer;
     @Override
     public void reservation(Abonne ab) throws ReservationException {
-        System.out.println(timeReservationLong);
         long timeStay = timeReservationLong - System.currentTimeMillis();
-        System.out.println(timeStay);
         if(timer != null && timeStay < 60 * 1000 && timeStay > 0){
             new LecteurMusic(timeStay).lancerMusicIndien();
             throw new ReservationException("ce document est deja reserver par un autre memebre mais il reste moin de " + (timeStay / 1000) + "s donc patientez avec cette musique");
