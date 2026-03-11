@@ -24,6 +24,7 @@ public abstract class Document implements IDocument{
     private Timer timer;
     @Override
     public void reservation(Abonne ab) throws ReservationException {
+        if(ab.isBanned()) throw new ReservationException("impossible de reserver le document car vous êtes banni");
         long timeStay = timeReservationLong - System.currentTimeMillis();
         if(timer != null && timeStay < 60 * 1000 && timeStay > 0){
             new LecteurMusic(timeStay).lancerMusicIndien();
@@ -50,6 +51,7 @@ public abstract class Document implements IDocument{
 
     @Override
     public void emprunt(Abonne ab) throws EmpruntException {
+        if(ab.isBanned()) throw new EmpruntException("l'emprunt du document est impossible car l'abonne est banni");
         state = state.emprunt(ab);
         if(timer != null)
         {
