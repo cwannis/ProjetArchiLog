@@ -35,14 +35,17 @@ public abstract class Document implements IDocument{
                 }
             }
         };
-        Timer timer = new Timer("timer reservation");
+        timer = new Timer("timer reservation");
         timer.schedule(task, timeReservation);
     }
 
     @Override
     public void emprunt(Abonne ab) throws EmpruntException {
         state = state.emprunt(ab);
-        if(timer != null) timer.cancel();
+        if(timer != null)
+        {
+            timer.cancel();
+        }
     }
 
     @Override
