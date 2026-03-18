@@ -12,5 +12,5 @@ public interface IDocument {
     // exception si réservé pour une autre abonné ou déjà emprunté
     void emprunt(Abonne ab) throws EmpruntException;
     // sert au retour d’un biblio.document ou à l’annulation d‘une réservation
-    void retour() throws RetourException;
+    void retour(boolean estAbime) throws RetourException;
 }

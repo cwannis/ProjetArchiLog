@@ -28,15 +28,15 @@ public abstract class Document implements IDocument{
         long timeStay = timeReservationLong - System.currentTimeMillis();
         if(timer != null && timeStay < 60 * 1000 && timeStay > 0){
             new LecteurMusic(timeStay).lancerMusicIndien();
-            throw new ReservationException("ce document est deja reserver par un autre memebre mais il reste moin de " + (timeStay / 1000) + "s donc patientez avec cette musique");
+            throw new ReservationException("ce document est deja reservé par un autre membre mais il reste moins de " + (timeStay / 1000) + "s donc patientez avec cette musique");
         }
         state = state.reservation(ab);
         TimerTask task = new TimerTask() {
             public void run()
             {
                 try {
-                    System.out.println("reservation fini");
-                    retour();
+                    System.out.println("reservation finie");
+                    retour(false);
                     timer = null;
                     timeReservationLong = 0;
                 } catch (RetourException e) {
@@ -60,7 +60,7 @@ public abstract class Document implements IDocument{
     }
 
     @Override
-    public void retour() throws RetourException {
-        state = state.retour();
+    public void retour(boolean estAbime) throws RetourException {
+        state = state.retour(estAbime);
     }
 }

@@ -29,8 +29,8 @@ public class Dvd extends Document{
     }
 
     @Override
-    public void retour() throws RetourException {
-        super.retour();
+    public void retour(boolean estAbime) throws RetourException {
+        super.retour(estAbime);
     }
 
     @Override

@@ -27,7 +27,15 @@ public class RetourService extends Service {
                     continue;
                 }
                 if (bibliotheque.asDocumentId(arguments[0])) {
-                    err = bibliotheque.retourDocuments(arguments[0]);
+                    String rr;
+                    super.sendLine("Le Document est il abimé repondez avec y/n");
+                    while(true){
+                        rr = super.readLine();
+                        if(rr.equals("y") || rr.equals("n")){
+                            break;
+                        } sendLine("veillez repondre avec y/n");
+                    }
+                    err = bibliotheque.retourDocuments(arguments[0], rr.equals("y") ? true : false);
                 } else {
                     err = "Erreur de saisie l'id du document n'est pas reconnu";
                     continue;

@@ -19,7 +19,7 @@ public class DocumentReserver extends DocumentState {
     }
 
     @Override
-    public DocumentState retour() throws RetourException {
+    public DocumentState retour(boolean estAbime) throws RetourException {
         return new DocumentLibre();
     }
 

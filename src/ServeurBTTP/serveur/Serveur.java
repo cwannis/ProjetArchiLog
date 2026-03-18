@@ -35,10 +35,10 @@ public class Serveur implements Runnable {
 		}
 		catch (IOException e) { 
 			try {this.listen_socket.close();} catch (IOException e1) {}
-			System.err.println("Pb sur le port d'�coute :"+e);
+			System.err.println("Pb sur le port d'ecoute :"+e);
 		} catch (Exception e)
 		{
-			System.err.println("erreur l'ors de l'initiation du service :" + e);
+			System.err.println("erreur lors de l'initiation du service :" + e);
 		}
 	}
 

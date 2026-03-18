@@ -55,19 +55,19 @@ public class Bibliotheque {
         synchronized (d){
             try {
                 d.emprunt(abonnes.get(idAbonne));
-                return "document emprunter avec sucee";
+                return "document emprunté avec succès";
             }catch(EmpruntException e) {
                 return e.getMessage();
             }
         }
     }
 
-    public String retourDocuments(String idDocument) {
+    public String retourDocuments(String idDocument, boolean estAbime) {
         IDocument d = documents.get(idDocument);
         synchronized (d) {
             try {
-                documents.get(idDocument).retour();
-                return "document retourner avec sucee";
+                documents.get(idDocument).retour(estAbime);
+                return "document retourné avec succès";
             } catch (RetourException e) {
                 return e.getMessage();
             }
@@ -79,7 +79,7 @@ public class Bibliotheque {
         synchronized (d) {
             try {
                 d.reservation(abonnes.get(idAbonne));
-                return "document reserver avec sucee";
+                return "document reservé avec succès";
             } catch (ReservationException e) {
                 return e.getMessage();
             }

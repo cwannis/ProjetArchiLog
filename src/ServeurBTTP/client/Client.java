@@ -39,7 +39,7 @@ public class Client {
             return s;
         }catch (IOException e)
         {
-            sout.println("une erreur c'est produite l'ors de l'attente du message du server : " + e);
+            sout.println("une erreur s'est produite lors de l'attente du message du server : " + e);
             return null;
         }
     }

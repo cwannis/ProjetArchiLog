@@ -14,7 +14,7 @@ public class DocumentLibre extends DocumentState{
     public DocumentState emprunt(Abonne ab) throws EmpruntException {
         return new DocumentEmprunter(ab);
     }
-    public DocumentState retour() throws RetourException {
+    public DocumentState retour(boolean estAbime) throws RetourException {
         throw new RetourException("ce document ne peut pas etre retourner car il est deja en stock");
     }
 

@@ -20,7 +20,7 @@ class Application {
 				System.out.println(c.readline());
 				System.out.print("> ");
 				c.send(clavier.readLine());
-				System.out.println("donne envoye en attente de la reponse du server ...");
+				System.out.println("données envoyées en attente de la reponse du server ...");
 				String reponse = c.readline();
 				System.out.println("Server reponse : " + reponse);
 			}

@@ -13,14 +13,15 @@ public class DocumentEmprunter extends DocumentState {
         abonneEmprunter = abonne;
     }
 
-    public DocumentState retour() throws RetourException {
+    public DocumentState retour(boolean estAbime) throws RetourException {
+        if(estAbime) abonneEmprunter.ban(20 * 1000);
         return new DocumentLibre();
     }
 
     @Override
     public DocumentState emprunt(Abonne ab) throws EmpruntException {
-        if(abonneEmprunter.getId().equals(ab.getId())) throw new EmpruntException("Vous possede deja ce document");
-        throw new EmpruntException("ce document est deja emprunter par un autre abonne");
+        if(abonneEmprunter.getId().equals(ab.getId())) throw new EmpruntException("Vous possedez deja ce document");
+        throw new EmpruntException("ce document est deja emprunté par un autre abonné");
     }
 
 }

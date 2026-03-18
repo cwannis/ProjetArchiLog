@@ -17,13 +17,13 @@ public class EmpruntService extends Service {
         String err = "";
         while (true) {
             try {
-                super.sendLine(err + "\n" + "Entrer [idDoc-idAbonne] que vous voulez emprunter");
+                super.sendLine(err + "\n" + "Entrez [idDoc-idAbonne] que vous voulez emprunter");
                 err = "";
                 String r = super.readLine();
                 String[] arguments = r.split("-");
                 for(String argument : arguments) argument = argument.trim();
                 if(arguments.length != 2){
-                    err = "Veuillez saisir les arguments comme demande";
+                    err = "Veuillez saisir les arguments comme demandé";
                     continue;
                 }
                 if(bibliotheque.asDocumentId(arguments[0]) && bibliotheque.asAbonne(arguments[1])) {
