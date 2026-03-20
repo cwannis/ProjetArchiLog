@@ -56,6 +56,7 @@ public abstract class Document implements IDocument{
         if(timer != null)
         {
             timer.cancel();
+            timer = null;
         }
     }
 

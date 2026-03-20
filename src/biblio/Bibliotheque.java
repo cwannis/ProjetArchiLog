@@ -6,6 +6,7 @@ import biblio.document.IDocument;
 import biblio.document.exception.EmpruntException;
 import biblio.document.exception.ReservationException;
 import biblio.document.exception.RetourException;
+import mail.SendMail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,8 @@ public class Bibliotheque {
 
     private HashMap<String, IDocument> documents;
     private HashMap<String, Abonne> abonnes;
+
+    private HashMap<Document, ArrayList<Abonne>> mailSender;
 
     public Bibliotheque() {
         documents = new HashMap<>();
@@ -74,7 +77,7 @@ public class Bibliotheque {
         }
     }
 
-    public  String reservationDocuments(String idDocument, String idAbonne) {
+    public String reservationDocuments(String idDocument, String idAbonne) {
         IDocument d = documents.get(idDocument);
         synchronized (d) {
             try {
@@ -85,5 +88,6 @@ public class Bibliotheque {
             }
         }
     }
+
 
 }

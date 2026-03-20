@@ -7,15 +7,17 @@ import biblio.document.exception.ReservationException;
 import biblio.document.exception.RetourException;
 import music.LecteurMusic;
 
+import java.util.ArrayList;
 import java.util.TimerTask;
 
 public class DocumentReserver extends DocumentState {
 
     private Abonne abboReserve;
+    private ArrayList<Abonne> abonnesWantMail;
 
     public DocumentReserver(Abonne ab) {
-
         abboReserve = ab;
+        abonnesWantMail = new ArrayList<>();
     }
 
     @Override
@@ -31,6 +33,7 @@ public class DocumentReserver extends DocumentState {
 
     public DocumentState reservation(Abonne ab) throws ReservationException {
         if(abboReserve.getId().equals(ab.getId())) throw new ReservationException("Vous ne pouvez pas reservez ce document car vous l'avez deja reservé");
+        abonnesWantMail.add(ab);
         throw new ReservationException("ce document ne peut pas etre reserver car un autre abonne la deja reservé");
     }
 

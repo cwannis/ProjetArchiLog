@@ -1,12 +1,17 @@
+package mail;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class sendMail {
+public class SendMailThread implements Runnable {
+
+    String destinataire;
+    String subject;
+    String text;
 
     private static Properties properties;
-
     static {
         properties = new Properties();
         properties.setProperty("mail.transport.protocol", "smtp");
@@ -17,9 +22,13 @@ public class sendMail {
         properties.setProperty("mail.smtp.tls", "true");
         properties.setProperty("mail.smtp.user", "daa7e5c9983ec2");
     }
+    public SendMailThread(String subject, String text, String destinataire) {
+        this.subject = subject;
+        this.text = text;
+        this.destinataire = destinataire;
+    }
 
-    public static void sendMessage(String subject, String text, String destinataire) {
-
+    public void run() {
         Session session = Session.getInstance(properties);
 
         MimeMessage message = new MimeMessage(session);
@@ -48,10 +57,4 @@ public class sendMail {
             }
         }
     }
-
-    public static void main(String[] args) {
-        sendMessage("test", "test", "test@test.com");
-    }
-    }
-
-
+}
