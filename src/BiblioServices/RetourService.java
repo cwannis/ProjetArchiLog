@@ -35,7 +35,7 @@ public class RetourService extends Service {
                             break;
                         } sendLine("veillez repondre avec y/n");
                     }
-                    err = bibliotheque.retourDocuments(arguments[0], rr.equals("y") ? true : false);
+                    err = bibliotheque.retourDocuments(arguments[0], rr.equals("y"));
                 } else {
                     err = "Erreur de saisie l'id du document n'est pas reconnu";
                     continue;

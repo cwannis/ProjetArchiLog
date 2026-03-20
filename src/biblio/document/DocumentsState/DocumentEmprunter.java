@@ -1,9 +1,12 @@
 package biblio.document.DocumentsState;
 
+import Properties.PropertiesReader;
 import biblio.Abonne.Abonne;
 import biblio.document.DocumentState;
 import biblio.document.exception.EmpruntException;
 import biblio.document.exception.RetourException;
+
+import java.util.Properties;
 
 public class DocumentEmprunter extends DocumentState {
 
@@ -14,7 +17,12 @@ public class DocumentEmprunter extends DocumentState {
     }
 
     public DocumentState retour(boolean estAbime) throws RetourException {
-        if(estAbime) abonneEmprunter.ban(20 * 1000);
+        if(estAbime)
+        {
+            PropertiesReader reader = PropertiesReader.getInstance();
+            Properties props = reader.getProperties();
+            abonneEmprunter.ban(Integer.parseInt(props.getProperty("client.timeBanForEndomaged")));
+        }
         return new DocumentLibre();
     }
 

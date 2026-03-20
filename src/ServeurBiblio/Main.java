@@ -3,6 +3,7 @@ package ServeurBiblio;
 import BiblioServices.EmpruntService;
 import BiblioServices.ReservationService;
 import BiblioServices.RetourService;
+import Properties.PropertiesReader;
 import ServeurBTTP.serveur.Serveur;
 import biblio.Abonne.Abonne;
 import biblio.Bibliotheque;
@@ -13,6 +14,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
+        PropertiesReader reader = PropertiesReader.getInstance();
+        System.out.println(reader.getProperties().getProperty("server.timeout"));
         Bibliotheque bibliotheque = Bibliotheque.getInstance();
         bibliotheque.addAbonne(new Abonne("1", "test", 18));
         bibliotheque.addDocument(new Dvd("1", "testDvd", true));

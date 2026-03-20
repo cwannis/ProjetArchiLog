@@ -3,6 +3,7 @@ package music;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 public class LecteurMusic implements Runnable {
 
@@ -35,6 +36,7 @@ public class LecteurMusic implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public void lancerMusicIndien()

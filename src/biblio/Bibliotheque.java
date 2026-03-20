@@ -74,7 +74,7 @@ public class Bibliotheque {
         }
     }
 
-    public synchronized String reservationDocuments(String idDocument, String idAbonne) {
+    public  String reservationDocuments(String idDocument, String idAbonne) {
         IDocument d = documents.get(idDocument);
         synchronized (d) {
             try {
