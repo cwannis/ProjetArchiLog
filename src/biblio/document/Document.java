@@ -16,8 +16,10 @@ public abstract class Document implements IDocument{
     private DocumentState state;
     public static final int timeReservation = 15000;
     private long timeReservationLong;
+    private String titre;
 
-    public Document(){
+    public Document(String titre) {
+        this.titre = titre;
         state = new DocumentLibre();
     }
 
@@ -30,7 +32,7 @@ public abstract class Document implements IDocument{
             new LecteurMusic(timeStay).lancerMusicIndien();
             throw new ReservationException("ce document est deja reservé par un autre membre mais il reste moins de " + (timeStay / 1000) + "s donc patientez avec cette musique");
         }
-        state = state.reservation(ab);
+        state = state.reservation(this, ab);
         TimerTask task = new TimerTask() {
             public void run()
             {
@@ -52,7 +54,7 @@ public abstract class Document implements IDocument{
     @Override
     public void emprunt(Abonne ab) throws EmpruntException {
         if(ab.isBanned()) throw new EmpruntException("l'emprunt du document est impossible car l'abonne est banni");
-        state = state.emprunt(ab);
+        state = state.emprunt(this, ab);
         if(timer != null)
         {
             timer.cancel();
@@ -62,6 +64,10 @@ public abstract class Document implements IDocument{
 
     @Override
     public void retour(boolean estAbime) throws RetourException {
-        state = state.retour(estAbime);
+        state = state.retour(this, estAbime);
+    }
+
+    public String getTitre() {
+        return titre;
     }
 }

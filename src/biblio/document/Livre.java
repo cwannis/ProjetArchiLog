@@ -14,7 +14,7 @@ public class Livre extends Document{
     private int nbPages;
 
     public Livre(String id, String titre, int nbPages) {
-        super();
+        super(titre);
         this.id = id;
         this.titre = titre;
         this.nbPages = nbPages;

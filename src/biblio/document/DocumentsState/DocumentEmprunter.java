@@ -2,8 +2,8 @@ package biblio.document.DocumentsState;
 
 import Properties.PropertiesReader;
 import biblio.Abonne.Abonne;
-import biblio.Bibliotheque;
 import biblio.document.DocumentState;
+import biblio.document.IDocument;
 import biblio.document.exception.EmpruntException;
 import biblio.document.exception.ReservationException;
 import biblio.document.exception.RetourException;
@@ -21,12 +21,12 @@ public class DocumentEmprunter extends DocumentState {
         abonnesWantMail = null;
         abonneEmprunter = abonne;
     }
-    public DocumentEmprunter(Abonne abonne, ArrayList<Abonne> wantMail) throws RetourException {
+    public DocumentEmprunter(Abonne abonne, ArrayList<Abonne> wantMail) {
         this(abonne);
         abonnesWantMail = wantMail;
     }
 
-    public DocumentState retour(boolean estAbime) throws RetourException {
+    public DocumentState retour(IDocument doc, boolean estAbime) throws RetourException {
         if(estAbime)
         {
             PropertiesReader reader = PropertiesReader.getInstance();
@@ -35,21 +35,19 @@ public class DocumentEmprunter extends DocumentState {
         }
         if(abonnesWantMail != null)
         {
-            for(Abonne a : abonnesWantMail) {
-                SendMail.sendMessage("Document libre", "le document que vous vouliez reserver est maintenan disponible", "jean-francois.brette@u-paris.fr");
-            }
+            SendMail.notifierAbbones(abonnesWantMail, doc);
         }
         return new DocumentLibre();
     }
 
     @Override
-    public DocumentState emprunt(Abonne ab) throws EmpruntException {
+    public DocumentState emprunt(IDocument doc, Abonne ab) throws EmpruntException {
         if(abonneEmprunter.getId().equals(ab.getId())) throw new EmpruntException("Vous possedez deja ce document");
         throw new EmpruntException("ce document est deja emprunté par un autre abonné");
     }
 
     @Override
-    public DocumentState reservation(Abonne ab) throws ReservationException
+    public DocumentState reservation(IDocument doc, Abonne ab) throws ReservationException
     {
         if(abonnesWantMail == null)
         {

@@ -12,6 +12,7 @@ public class Dvd extends Document{
     private boolean p16;
 
     public Dvd(String id, String titre, boolean p16) {
+        super(titre);
         this.id = id;
         this.titre = titre;
         this.p16 = p16;

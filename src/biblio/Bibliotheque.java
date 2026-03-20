@@ -22,7 +22,6 @@ public class Bibliotheque {
     private HashMap<String, IDocument> documents;
     private HashMap<String, Abonne> abonnes;
 
-    private HashMap<Document, ArrayList<Abonne>> mailSender;
 
     public Bibliotheque() {
         documents = new HashMap<>();

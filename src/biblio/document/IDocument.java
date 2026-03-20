@@ -13,4 +13,6 @@ public interface IDocument {
     void emprunt(Abonne ab) throws EmpruntException;
     // sert au retour d’un biblio.document ou à l’annulation d‘une réservation
     void retour(boolean estAbime) throws RetourException;
+
+    String getTitre();
 }
