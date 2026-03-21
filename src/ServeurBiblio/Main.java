@@ -7,8 +7,8 @@ import Properties.PropertiesReader;
 import ServeurBTTP.serveur.Serveur;
 import biblio.Abonne.Abonne;
 import biblio.Bibliotheque;
-import biblio.document.Dvd;
-import biblio.document.Livre;
+import biblio.document.DocumentsInstances.Dvd;
+import biblio.document.DocumentsInstances.Livre;
 
 import java.io.IOException;
 

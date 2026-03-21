@@ -17,9 +17,9 @@ public class RetourService extends Service {
         Bibliotheque bibliotheque = Bibliotheque.getInstance();
         while (true) {
             try {
-                super.sendLine(err + "\n" + "Entrer [idDoc] que vous voulez rendre");
+                super.send(err + "\n" + "Entrer [idDoc] que vous voulez rendre");
                 err = "";
-                String r = super.readLine();
+                String r = super.read();
                 String[] arguments = r.split(" ");
                 for (String argument : arguments) argument = argument.trim();
                 if (arguments.length != 1) {
@@ -28,12 +28,12 @@ public class RetourService extends Service {
                 }
                 if (bibliotheque.asDocumentId(arguments[0])) {
                     String rr;
-                    super.sendLine("Le Document est il abimé repondez avec y/n");
+                    super.send("Le Document est il abimé repondez avec y/n");
                     while(true){
-                        rr = super.readLine();
+                        rr = super.read();
                         if(rr.equals("y") || rr.equals("n")){
                             break;
-                        } sendLine("veillez repondre avec y/n");
+                        } send("veillez repondre avec y/n");
                     }
                     err = bibliotheque.retourDocuments(arguments[0], rr.equals("y"));
                 } else {

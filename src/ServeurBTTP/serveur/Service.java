@@ -35,7 +35,7 @@ public abstract class Service implements Runnable {
         this.timeOut = timeOut;
     }
 
-    public String readLine() throws IOException {
+    public String read() throws IOException {
         try {
             if (timeOut) socketclient.setSoTimeout(TIMEOUT);
             String s = sin.readLine();
@@ -63,7 +63,7 @@ public abstract class Service implements Runnable {
         Service.TIMEOUT = TIMEOUT;
     }
 
-    public void sendLine(String line) {
+    public void send(String line) {
         line = Codage.codage(line);
         sout.println(line);
     }

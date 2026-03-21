@@ -1,21 +1,23 @@
-package biblio.document;
+package biblio.document.DocumentsInstances;
+
 
 import biblio.Abonne.Abonne;
+import biblio.document.Document;
 import biblio.document.exception.EmpruntException;
 import biblio.document.exception.ReservationException;
 import biblio.document.exception.RetourException;
 
-public class Dvd extends Document{
+public class Livre extends Document {
 
     private String id;
     private String titre;
-    private boolean p16;
+    private int nbPages;
 
-    public Dvd(String id, String titre, boolean p16) {
+    public Livre(String id, String titre, int nbPages) {
         super(titre);
         this.id = id;
         this.titre = titre;
-        this.p16 = p16;
+        this.nbPages = nbPages;
     }
 
     @Override
@@ -25,23 +27,16 @@ public class Dvd extends Document{
 
     @Override
     public void reservation(Abonne ab) throws ReservationException {
-        if(!ageIsGood(ab)) throw new ReservationException("Pour reserver ce biblio.document il faut au moin 16 ans");
         super.reservation(ab);
+    }
+
+    @Override
+    public void emprunt(Abonne ab) throws EmpruntException {
+        super.emprunt(ab);
     }
 
     @Override
     public void retour(boolean estAbime) throws RetourException {
         super.retour(estAbime);
-    }
-
-    @Override
-    public void emprunt(Abonne ab) throws EmpruntException {
-        if(!ageIsGood(ab)) throw new EmpruntException("Pour reserver ce biblio.document il faut au moin 16 ans");
-        super.emprunt(ab);
-    }
-
-    private boolean ageIsGood(Abonne ab)
-    {
-        return !p16 || ab.getAge() >= 16;
     }
 }

@@ -17,9 +17,9 @@ public class EmpruntService extends Service {
         String err = "";
         while (true) {
             try {
-                super.sendLine(err + "\n" + "Entrez [idDoc-idAbonne] que vous voulez emprunter");
+                super.send(err + "\n" + "Entrez [idDoc-idAbonne] que vous voulez emprunter");
                 err = "";
-                String r = super.readLine();
+                String r = super.read();
                 String[] arguments = r.split("-");
                 for(String argument : arguments) argument = argument.trim();
                 if(arguments.length != 2){

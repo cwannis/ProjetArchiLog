@@ -17,9 +17,9 @@ public class ReservationService extends Service {
         String err = "";
         while (true) {
             try {
-                super.sendLine(err + "\n" + "Entrer [idDoc-idAbonne] que vous voulez reserver");
+                super.send(err + "\n" + "Entrer [idDoc-idAbonne] que vous voulez reserver");
                 err = "";
-                String r = super.readLine();
+                String r = super.read();
                 String[] arguments = r.split("-");
                 for(String argument : arguments) argument = argument.trim();
                 if(arguments.length != 2){

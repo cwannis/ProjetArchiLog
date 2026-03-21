@@ -10,7 +10,7 @@ public class clientReservation {
         Scanner sc = new Scanner(System.in);
         Client client = new Client(2000, "127.0.0.1");
         while(true) {
-            System.out.println(client.readline());
+            System.out.println(client.read());
             client.send(sc.nextLine());
         }
     }

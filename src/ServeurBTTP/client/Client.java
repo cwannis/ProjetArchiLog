@@ -24,7 +24,7 @@ public class Client {
         sout = new PrintWriter (socket.getOutputStream(), true);
     }
 
-    public String readline()
+    public String read()
     {
         try{
             String s = sin.readLine();
