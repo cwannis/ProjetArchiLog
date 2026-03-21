@@ -15,6 +15,7 @@ public abstract class Service implements Runnable {
     private Socket socketclient;
     private BufferedReader sin;
     private PrintWriter sout;
+    private boolean timeOut = false;
 
     public Service(Socket client) {
         socketclient = client;
@@ -30,9 +31,13 @@ public abstract class Service implements Runnable {
         return socketclient;
     }
 
+    public void setTimeOut(boolean timeOut) {
+        this.timeOut = timeOut;
+    }
+
     public String readLine() throws IOException {
         try {
-            socketclient.setSoTimeout(TIMEOUT);
+            if (timeOut) socketclient.setSoTimeout(TIMEOUT);
             String s = sin.readLine();
             if (s == null) {
                 socketclient.close();
