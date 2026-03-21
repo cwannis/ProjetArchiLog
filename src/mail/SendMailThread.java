@@ -4,23 +4,26 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import Properties.PropertiesReader;
 
 public class SendMailThread implements Runnable {
 
-    String destinataire;
-    String subject;
-    String text;
+    private String destinataire;
+    private String subject;
+    private String text;
+
+    private static Properties props = PropertiesReader.getInstance().getProperties();
 
     private static Properties properties;
     static {
         properties = new Properties();
-        properties.setProperty("mail.transport.protocol", "smtp");
-        properties.setProperty("mail.smtp.host", "sandbox.smtp.mailtrap.io");
-        properties.setProperty("mail.smtp.auth", "true");
-        properties.setProperty("mail.smtp.port", "2525");
-        properties.setProperty("mail.smtp.ssl", "false");
-        properties.setProperty("mail.smtp.tls", "true");
-        properties.setProperty("mail.smtp.user", "daa7e5c9983ec2");
+        properties.setProperty("mail.transport.protocol", props.getProperty("mail.transport.protocol"));
+        properties.setProperty("mail.smtp.host", props.getProperty("mail.smtp.host"));
+        properties.setProperty("mail.smtp.auth", props.getProperty("mail.smtp.auth"));
+        properties.setProperty("mail.smtp.port", props.getProperty("mail.smtp.port"));
+        properties.setProperty("mail.smtp.ssl", props.getProperty("mail.smtp.ssl"));
+        properties.setProperty("mail.smtp.tls", props.getProperty("mail.smtp.tls"));
+        properties.setProperty("mail.smtp.user", props.getProperty("mail.smtp.user"));
     }
     public SendMailThread(String subject, String text, String destinataire) {
         this.subject = subject;
@@ -42,8 +45,8 @@ public class SendMailThread implements Runnable {
 
         Transport transport = null;
         try {
-            transport = session.getTransport("smtp");
-            transport.connect("daa7e5c9983ec2", "94013ef61aa8d0");
+            transport = session.getTransport(props.getProperty("mail.transport.protocol"));
+            transport.connect(props.getProperty("mail.smtp.user"), props.getProperty("mail.smtp.password"));
             transport.sendMessage(message, new Address[]{new InternetAddress(destinataire)});
         } catch (MessagingException e) {
             e.printStackTrace();
