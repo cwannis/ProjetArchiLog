@@ -19,4 +19,9 @@ public abstract class DocumentState {
         throw new RetourException("ce document ne peut pas etre retourner");
     }
 
+    public void addAlert(Abonne ab)
+    {
+
+    }
+
 }

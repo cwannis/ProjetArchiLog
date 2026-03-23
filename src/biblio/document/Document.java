@@ -70,4 +70,10 @@ public abstract class Document implements IDocument{
     public String getTitre() {
         return titre;
     }
+
+    @Override
+    public void addAlert(Abonne ab)
+    {
+        state.addAlert(ab);
+    }
 }

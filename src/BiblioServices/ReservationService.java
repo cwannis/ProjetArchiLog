@@ -27,6 +27,15 @@ public class ReservationService extends Service {
                     continue;
                 }
                 if(bibliotheque.asDocumentId(arguments[0]) && bibliotheque.asAbonne(arguments[1])) {
+                    String rep = "";
+                    super.send("Si le document n'est pas disponible voulez vous une alerte l'orsque que ce dernier ce libére ? repondez avec Y/n");
+                    while(true)
+                    {
+                        rep = super.read();
+                        if(rep.equals("y") || rep.equals("n")) break;
+                        super.send("veillez repondre avec y pour yes ou n pour no");
+                    }
+                    if(rep.equals("y")) bibliotheque.addAlert(arguments[1], arguments[0]);
                     err = bibliotheque.reservationDocuments(arguments[0], arguments[1]);
                 } else
                 {

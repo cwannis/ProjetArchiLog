@@ -15,4 +15,6 @@ public interface IDocument {
     void retour(boolean estAbime) throws RetourException;
 
     String getTitre();
+
+    void addAlert(Abonne ab);
 }

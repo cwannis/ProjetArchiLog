@@ -88,5 +88,8 @@ public class Bibliotheque {
         }
     }
 
-
+    public void addAlert(String idAbonne, String idDocument) {
+        IDocument d = documents.get(idDocument);
+        d.addAlert(abonnes.get(idAbonne));
+    }
 }

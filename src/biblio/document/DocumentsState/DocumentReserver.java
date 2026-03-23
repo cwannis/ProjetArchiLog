@@ -44,10 +44,13 @@ public class DocumentReserver extends DocumentState {
 
     public DocumentState reservation(IDocument doc, Abonne ab) throws ReservationException {
         if(abboReserve.getId().equals(ab.getId())) throw new ReservationException("Vous ne pouvez pas reservez ce document car vous l'avez deja reservé");
-        if(abonnesWantMail == null) abonnesWantMail = new ArrayList<>();
-        abonnesWantMail.add(ab);
         throw new ReservationException("ce document ne peut pas etre reserver car un autre abonne la deja reservé");
     }
 
+    @Override
+    public void addAlert(Abonne ab) {
+        if(abonnesWantMail == null) abonnesWantMail = new ArrayList<>();
+        abonnesWantMail.add(ab);
+    }
 
 }

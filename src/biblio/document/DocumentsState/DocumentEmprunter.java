@@ -49,12 +49,14 @@ public class DocumentEmprunter extends DocumentState {
     @Override
     public DocumentState reservation(IDocument doc, Abonne ab) throws ReservationException
     {
-        if(abonnesWantMail == null)
-        {
-            abonnesWantMail = new ArrayList<>();
-        }
-        abonnesWantMail.add(ab);
         throw new ReservationException("ce document ne peut pas etre reservé il est deja emprunter par un autre abonne");
+    }
+
+    @Override
+    public void addAlert(Abonne ab)
+    {
+        if(abonnesWantMail == null) abonnesWantMail = new ArrayList<>();
+        abonnesWantMail.add(ab);
     }
 
 }

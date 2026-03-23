@@ -9,12 +9,6 @@ public class Serveur implements Runnable {
 	private Class<? extends Service> service_class;
 
 	public Serveur(int port, Class<? extends Service> service) throws IOException {
-        try {
-            Class.forName("ServeurBTTP.serveur.ServerConfig");
-        } catch (ClassNotFoundException e) {
-			System.out.println("erreur avec le fichier de configuration");
-            throw new RuntimeException(e);
-        }
         listen_socket = new ServerSocket(port);
 		service_class = service;
 	}
