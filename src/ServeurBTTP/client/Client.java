@@ -16,9 +16,9 @@ public class Client {
     private BufferedReader sin;
     private PrintWriter sout;
 
-    public Client(int PORT, String HOST) throws IOException {
+    public Client(int PORT, String host) throws IOException {
         this.PORT = PORT;
-        this.HOST = HOST;
+        this.HOST = host.replace("bttp://", "");
         socket = new Socket(HOST, PORT);
         sin = new BufferedReader (new InputStreamReader(socket.getInputStream()));
         sout = new PrintWriter (socket.getOutputStream(), true);

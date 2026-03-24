@@ -9,7 +9,7 @@ public class ClientEmprunt  {
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        Client client = new Client(2001, "127.0.0.1");
+        Client client = new Client(2001, "bttp://127.0.0.1");
         while(true) {
             System.out.println(client.read());
             client.send(sc.nextLine());
